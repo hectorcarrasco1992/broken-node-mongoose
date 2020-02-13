@@ -1,5 +1,5 @@
-const User = require('../models/Users');
 const bcrypt = require('bcryptjs');
+const User = require('../models/Users');
 
 module.exports = {
   register: (req, res) => {
@@ -42,7 +42,7 @@ module.exports = {
 
   login: (req, res) => {
     return new Promise((resolve, reject) => {
-      findOne({ email: req.body.email })
+      User.findOne({ email: req.body.email })
         .then(user => {
           bcrypt
             .compare(req.body.password, user.password)
